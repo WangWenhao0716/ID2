@@ -27,7 +27,16 @@ git clone https://github.com/WangWenhao0716/ID2.git
 cd ID2
 ```
 ## Training
-
+```
+torchrun --nproc_per_node=8 --nnodes=1 --node_rank=0 --master_addr=your_IP \
+train_single_source_gem_coslr_wb_balance_cos_ema_ddpmm_torch2_vae_sd2.py \
+-ds sd2_d_multi_feature -a vit_vae --margin 0.0 \
+--num-instances 4 -b 512 -j 32 --warmup-step 5 \
+--lr 0.00035 --iters 2000 --epochs 25 \
+--data-dir path_to_sd2_d_multi_feature --features 512 \
+--logs-dirlogs/sd2_d_multi/vit_sd2_vae_onelayerw_512f \
+--multiprocessing-distributed --world-size 1
+```
 ## Feature Extraction
 
 ### Step 1: Get VAE embedding.
