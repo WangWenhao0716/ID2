@@ -21,7 +21,7 @@ conda create -n id2 python=3.9
 conda activate id2
 pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
 pip install transformers==4.52.4 diffusers==0.33.1 accelerate==1.7.0 
-pip install timm==0.4.12 torch_ema==0.3 multiprocess==0.70.18 h5py==3.13.0
+pip install torch_ema==0.3 multiprocess==0.70.18
 git clone https://github.com/WangWenhao0716/ID2.git
 cd ID2
 ```
