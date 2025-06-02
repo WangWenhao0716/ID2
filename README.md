@@ -11,7 +11,9 @@ We release the dataset at [HuggingFace](https://huggingface.co/datasets/WenhaoWa
 The training code below uses VAE-encoded training images; for your convenience, you can also download these features directly.
 
 ## Demonstration
-
+<p align="center">
+  <img src="https://github.com/WangWenhao0716/ID2/blob/main/true.png" width="100%">
+</p>
 ## Installation
 
 ## Training
