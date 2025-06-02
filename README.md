@@ -63,7 +63,7 @@ torch.save(mod['state_dict']['module.base.0.fc1.weight'], 'vit_sd2_vae_onelayerw
 ```
 Or you can directly download our trained model by:
 ```
-wget xxxxx
+wget https://github.com/WangWenhao0716/ID2/raw/refs/heads/main/vit_sd2_vae_onelayerw_512f.pth.tar
 ```
 
 Then:
