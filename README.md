@@ -54,15 +54,22 @@ features = latents.reshape(len(latents), -1) # torch.Size([1, 4096])
 ```
 ### Step 2: Perform linear transformation.
 
-You can directly download our trained model by:
+If you train a model by yourself, the W is obtained by:
+```python
+import torch
+mod = torch.load('logs/sd2_d_multi/vit_sd2_vae_onelayerw_512f/checkpoint_24_ema.pth.tar', map_location='cpu')
+torch.save(mod['state_dict']['module.base.0.fc1.weight'], 'vit_sd2_vae_onelayerw_512f.pth.tar')
+
+```
+Or you can directly download our trained model by:
 ```
 wget xxxxx
 ```
 
+Then:
 ```python
 import torch
-ckpt = torch.load('vit_sd2_vae_onelayerw_512f.pth.tar', map_location='cpu')
-W = ckpt['module.base.0.fc1.weight']
+W = torch.load('vit_sd2_vae_onelayerw_512f.pth.tar', map_location='cpu')
 features_final = features@W.T # torch.Size([1, 4096]) -> torch.Size([1, 512])
 ```
 
