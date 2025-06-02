@@ -54,7 +54,7 @@ features = latents.reshape(len(latents), -1) # torch.Size([1, 4096])
 ```
 ### Step 2: Perform linear transformation.
 
-If you train a model by yourself, the W is obtained by:
+If you train a model by yourself, the weight is obtained by:
 ```python
 import torch
 mod = torch.load('logs/sd2_d_multi/vit_sd2_vae_onelayerw_512f/checkpoint_24_ema.pth.tar', map_location='cpu')
