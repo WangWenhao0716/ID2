@@ -14,8 +14,16 @@ The training code below uses VAE-encoded training images; for your convenience, 
 <p align="center">
   <img src="https://github.com/WangWenhao0716/ID2/blob/main/true.png" width="100%">
 </p>
-## Installation
 
+## Installation
+```
+conda create -n id2 python=3.9
+conda activate id2
+pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
+pip install timm==0.4.12
+git clone https://github.com/WangWenhao0716/ID2.git
+cd ID2
+```
 ## Training
 
 ## Feature Extraction
