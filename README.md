@@ -73,6 +73,7 @@ W = torch.load('vit_sd2_vae_onelayerw_512f.pth.tar', map_location='cpu')
 features_final = features@W.T # torch.Size([1, 4096]) -> torch.Size([1, 512])
 ```
 
+The `features_final` is used for matching, i.e., comparing cosine similarity.
 
 ## Citation
 ```
