@@ -20,6 +20,7 @@ The training code below uses VAE-encoded training images; for your convenience, 
 conda create -n id2 python=3.9
 conda activate id2
 pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 --index-url https://download.pytorch.org/whl/cu118
+pip install transformers diffusers accelerate
 pip install timm==0.4.12
 git clone https://github.com/WangWenhao0716/ID2.git
 cd ID2
@@ -27,6 +28,44 @@ cd ID2
 ## Training
 
 ## Feature Extraction
+
+### Step 1: Get VAE embedding.
+```python
+from diffusers import AutoPipelineForImage2Image
+import torchvision
+import torch
+from PIL import Image
+import requests
+
+pipeline = AutoPipelineForImage2Image.from_pretrained("stabilityai/stable-diffusion-2", torch_dtype=torch.float32, variant="fp16", use_safetensors=True)
+vae = pipeline.vae
+
+mean, std = [0.485, 0.456, 0.406],[0.229, 0.224, 0.225]
+transforms = torchvision.transforms.Compose([
+  torchvision.transforms.Resize((256, 256)),
+  torchvision.transforms.ToTensor(),
+  torchvision.transforms.Normalize([0.5], [0.5]), 
+])
+
+url = "https://huggingface.co/datasets/WenhaoWang/AnyPattern/resolve/main/Irises.jpg"
+image = Image.open(requests.get(url, stream=True).raw)
+latents = vae.encode(transforms(image).unsqueeze(0)).latent_dist.sample() # torch.Size([1, 4, 32, 32])
+features = latents.reshape(len(latents), -1) # torch.Size([1, 4096])
+```
+### Step 2: Perform linear transformation.
+
+You can directly download our trained model by:
+```
+wget xxxxx
+```
+
+```python
+import torch
+ckpt = torch.load('vit_sd2_vae_onelayerw_512f.pth.tar', map_location='cpu')
+W = ckpt['module.base.0.fc1.weight']
+features_final = features@W.T # torch.Size([1, 4096]) -> torch.Size([1, 512])
+```
+
 
 ## Citation
 ```
