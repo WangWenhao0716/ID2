@@ -101,4 +101,4 @@ We release the code and trained models under the [CC-BY-NC-4.0 license](https://
 
 ## Contact
 
-If you have any questions or want to use this project commerically, feel free to contact [Wenhao Wang](https://wangwenhao0716.github.io/) (wangwenhao0716@gmail.com).
+If you have any questions or would like to use this project commercially, please feel free to contact [Wenhao Wang](https://wangwenhao0716.github.io/) (wangwenhao0716@gmail.com).
